@@ -202,21 +202,14 @@ function M.pick_template()
     return
   end
 
-  local snacks_ok, snacks = pcall(require, "snacks")
-  if not snacks_ok or not snacks.picker or type(snacks.picker.select) ~= "function" then
-    vim.notify("snacks.nvim picker is required (missing Snacks.picker.select)", vim.log.levels.ERROR)
-    return
+  local function format_item(item)
+    if item.description and item.description ~= "" then
+      return string.format("%s - %s", item.text, item.description)
+    end
+    return item.text
   end
 
-  snacks.picker.select(items, {
-    prompt = "Select LaTeX template",
-    format_item = function(item)
-      if item.description and item.description ~= "" then
-        return string.format("%s - %s", item.text, item.description)
-      end
-      return item.text
-    end,
-  }, function(choice)
+  local function on_choice(choice)
     if not choice then
       return
     end
@@ -228,7 +221,21 @@ function M.pick_template()
     end
 
     write_template_to_file(template_name, template)
-  end)
+  end
+
+  local snacks_ok, snacks = pcall(require, "snacks")
+  if snacks_ok and snacks.picker and type(snacks.picker.select) == "function" then
+    snacks.picker.select(items, {
+      prompt = "Select LaTeX template",
+      format_item = format_item,
+    }, on_choice)
+    return
+  end
+
+  vim.ui.select(items, {
+    prompt = "Select LaTeX template",
+    format_item = format_item,
+  }, on_choice)
 end
 
 return M

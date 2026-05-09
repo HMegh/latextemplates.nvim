@@ -2,11 +2,13 @@
 
 Neovim plugin to create LaTeX documents from saved templates.
 
-## Installation (lazy.nvim)
+## Installation using [Lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
-  "haroun/latextemplates.nvim",
+  "HMegh/latextemplates.nvim",
+  dependencies = {"folke/snacks.nvim"}, -- optional, only needed if you want to use the built-in picker
+
   opts = {
     templates = {
       -- your templates here
