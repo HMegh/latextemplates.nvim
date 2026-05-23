@@ -133,7 +133,8 @@ local function build_template_lines(template)
 end
 
 local function default_filename_for(template_name)
-  return template_name:gsub("%s+", "_"):lower() .. ".tex"
+  -- return template_name:gsub("%s+", "_"):lower() .. ".tex"
+  return "main.tex"
 end
 
 local function write_template_to_file(template_name, template)
