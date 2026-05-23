@@ -6,7 +6,7 @@ Neovim plugin to create LaTeX documents from saved templates.
 
 ```lua
 {
-  "HMegh/latextemplates.nvim",
+  "hmegh/latextemplates.nvim",
   dependencies = {"folke/snacks.nvim"}, -- optional, only needed if you want to use the built-in picker
 
   opts = {
