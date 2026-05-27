@@ -2,6 +2,24 @@
 
 Neovim plugin to create LaTeX documents from saved templates.
 
+
+## Usage
+
+Run:
+
+```
+:LatexTemplatesPick
+```
+
+This opens a Snacks picker, lets you choose a template, then prompts for a `.tex` file path.
+The plugin writes the generated file to disk (creating parent directories if needed) and opens it.
+
+
+
+https://github.com/user-attachments/assets/adce895c-1535-48f7-af47-f622714b1b0c
+
+
+
 ## Installation using [Lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
@@ -70,13 +88,3 @@ require("latextemplates").setup({
 })
 ```
 
-## Command
-
-Run:
-
-```
-:LatexTemplatesPick
-```
-
-This opens a Snacks picker, lets you choose a template, then prompts for a `.tex` file path.
-The plugin writes the generated file to disk (creating parent directories if needed) and opens it.
